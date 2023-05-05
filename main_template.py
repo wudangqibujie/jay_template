@@ -1,5 +1,4 @@
 import numpy
-
 from data_loader.captcha_dataloader import CaptchaDataset
 from torch.utils.data import DataLoader
 from model.captcha_model import CNN
@@ -63,7 +62,7 @@ trainer = Trainer(model,
                   len_epoch=None,
                   log_step=50)
 trainer.train()
-#
+
 # def multiclass_accuracy(predict_labels, labels):
 #     predict_labels = torch.split(predict_labels, 38, dim=1)
 #     labels = torch.split(labels, 38, dim=1)
