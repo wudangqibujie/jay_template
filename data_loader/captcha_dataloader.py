@@ -11,10 +11,8 @@ class CaptchaDataset(Dataset):
         self.train_image_file_paths = [os.path.join(folder, image_file) for image_file in os.listdir(folder)]
         shuffle(self.train_image_file_paths)
         self.transform = transforms.Compose([
-                        # transforms.ColorJitter(),
                         transforms.Grayscale(),
                         transforms.ToTensor(),
-                        # transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
                     ])
         self.label_encoder = self.encode(captcha_config)
 
@@ -53,8 +51,3 @@ class CaptchaDataset(Dataset):
                 if k > 61:
                     raise ValueError('error')
         return k
-
-# train_dataloader = DataLoader(CaptchaDataset(captcha_setting.TRAIN_DATASET_PATH, transform=transform),
-#                               batch_size=64, shuffle=True)
-# valid_dataloader = DataLoader(CaptchaDataset(captcha_setting.TEST_DATASET_PATH, transform=transform), shuffle=True)
-# predict_dataloader = DataLoader(CaptchaDataset(captcha_setting.PREDICT_DATASET_PATH, transform=transform), shuffle=True)

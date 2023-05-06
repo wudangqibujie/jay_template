@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 import torch
 from utils import inf_loop
 from model.metric import MetricCollect
@@ -7,13 +5,6 @@ from numpy import inf
 from abc import abstractmethod
 from tqdm import tqdm
 import time
-import logging
-import logging.config as logging_config
-from utils import read_json
-config = read_json("logger/logger_config.json")
-logging_config.dictConfig(config)
-logger = logging.getLogger("train")
-logger.setLevel(logging.INFO)
 
 class BaseTrainer:
     def __init__(self,
@@ -24,6 +15,7 @@ class BaseTrainer:
                  config,
                  ):
         self.config = config
+        self.logger = config.get_logger("trainer", config["trainer"]["verbosity"])
         self.model = model
         self.criterion = criterion
         self.metric_funcs = metric_funcs
@@ -35,8 +27,8 @@ class BaseTrainer:
         self.log_step = self.trainer_config['log_step']
 
         self.start_epoch = 1
-        self.checkpoint_dir = config["save_dir"]
-        if config["resume"] is not None:
+        self.checkpoint_dir = config.get_save_dir
+        if config.resume is not None:
             self._resume_checkpoint(config["resume"])
 
     @abstractmethod
@@ -47,7 +39,7 @@ class BaseTrainer:
         for epoch in range(self.start_epoch, self.epochs):
             rslt = self._train_epoch(epoch)
             time.sleep(1)
-            logger.info(str(rslt))
+            self.logger.info(str(rslt))
             if epoch % self.save_period == 0:
                 self._save_checkpoint(epoch)
 
@@ -62,7 +54,7 @@ class BaseTrainer:
         }
         filename = f"{self.checkpoint_dir}/checkpoint-epoch{epoch}.pth"
         torch.save(model_info, filename)
-        logger.info("save checkpoint: {}".format(filename))
+        self.logger.info("save checkpoint: {}".format(filename))
 
     def _resume_checkpoint(self, resume_path):
         resume_path = str(resume_path)

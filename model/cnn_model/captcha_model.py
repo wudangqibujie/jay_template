@@ -4,7 +4,7 @@ from base import BaseModel
 
 
 class CNN(BaseModel):
-    def __init__(self, image_height, image_width, max_captcha, all_char_set_len):
+    def __init__(self, model_config):
         super(CNN, self).__init__()
         self.layer1 = nn.Sequential(
             nn.Conv2d(1, 32, kernel_size=3, padding=1),
@@ -25,11 +25,11 @@ class CNN(BaseModel):
             nn.ReLU(),
             nn.MaxPool2d(2))
         self.fc = nn.Sequential(
-            nn.Linear((image_width//8) * (image_height//8)*64, 1024),
+            nn.Linear((model_config.image_width//8) * (model_config.image_height//8)*64, 1024),
             nn.Dropout(0.5),  # drop 50% of the neuron
             nn.ReLU())
         self.rfc = nn.Sequential(
-            nn.Linear(1024, max_captcha * all_char_set_len),
+            nn.Linear(1024, model_config.max_captcha * model_config.all_char_set_len),
         )
         # self.rfc = [nn.Linear(1024, model_config.all_char_set_len) for _ in range(model_config.max_captcha)]
 
