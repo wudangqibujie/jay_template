@@ -1,6 +1,7 @@
 import torch
 from sklearn.metrics import roc_auc_score, roc_curve
 import numpy as np
+import torch.nn.functional as F
 
 
 class MetricCollect:
@@ -65,16 +66,16 @@ def ks(output, target):
     return abs(FPR - TPR).max()
 
 
-# def multiclass_accuracy(predict_labels, labels):
-#     predict_labels = torch.split(predict_labels, 38, dim=1)
-#     labels = torch.split(labels, 38, dim=1)
-#     mk = []
-#     for predict_label, label in zip(predict_labels, labels):
-#         mk.append(torch.argmax(predict_label, dim=1) == torch.argmax(label, dim=1))
-#     mk_con = torch.sum(torch.sum(torch.stack(mk, dim=1), dim=1) == 4).item()
-#     return round(mk_con / labels[0].size(0), 4)
-#
-#
+def multiclass_accuracy(predict_labels, labels):
+    predict_labels = torch.split(predict_labels, 38, dim=1)
+    labels = torch.split(labels, 38, dim=1)
+    mk = []
+    for predict_label, label in zip(predict_labels, labels):
+        mk.append(torch.argmax(predict_label, dim=1) == torch.argmax(label, dim=1))
+    mk_con = torch.sum(torch.sum(torch.stack(mk, dim=1), dim=1) == 4).item()
+    return round(mk_con / labels[0].size(0), 4)
+
+
 # def multiclass_ele_accuracy(predict_labels, labels):
 #     predict_labels = torch.split(predict_labels, 38, dim=1)
 #     labels = torch.split(labels, 38, dim=1)
@@ -84,17 +85,33 @@ def ks(output, target):
 #     mk_con = torch.sum(torch.stack(mk, dim=1), dim=1).item()
 #     return round(mk_con / (labels[0].size(0) * 4), 4)
 
-def multiclass_accuracy(predict_labels, labels):
-    ll_s = torch.sort(torch.topk(predict_labels, 1)[1], dim=1)[0]
-    kk_s = torch.sort(torch.topk(labels, 1)[1], dim=1)[0]
-    correct_num = torch.sum(torch.sum(torch.eq(ll_s, kk_s), dim=1) == 1).item()
-    total_num = labels.size(0)
-    return correct_num / total_num
-
-
+# def multiclass_accuracy(predict_labels, labels):
+#     ll_s = torch.sort(torch.topk(predict_labels, 4)[1], dim=1)[0]
+#     kk_s = torch.sort(torch.topk(labels, 4)[1], dim=1)[0]
+#     correct_num = torch.sum(torch.sum(torch.eq(ll_s, kk_s), dim=1) == 4).item()
+#     total_num = labels.size(0)
+#     return correct_num / total_num
+#
+#
 def multiclass_ele_accuracy(predict_labels, labels):
-    ll_s = torch.sort(torch.topk(predict_labels, 1)[1], dim=1)[0]
-    kk_s = torch.sort(torch.topk(labels, 1)[1], dim=1)[0]
+    ll_s = torch.sort(torch.topk(predict_labels, 4)[1], dim=1)[0]
+    kk_s = torch.sort(torch.topk(labels, 4)[1], dim=1)[0]
     total_ele_num = labels.size(0) * 1
     correct_ele_num = torch.sum(torch.eq(ll_s, kk_s)).item()
     return round(correct_ele_num / total_ele_num, 4)
+
+
+def captcha_acc(out, target):
+    out, target = out.view(-1, 36), target.view(-1, 36)
+    out = F.softmax(out, dim=1)
+    out = torch.argmax(out, dim=1)
+    target = torch.argmax(target, dim=1)
+    out, target = out.view(-1, 4), target.view(-1, 4)
+    correct_list = []
+    for i, j in zip(target, out):
+        if torch.equal(i, j):
+            correct_list.append(1)
+        else:
+            correct_list.append(0)
+    acc = sum(correct_list) / len(correct_list)
+    return acc

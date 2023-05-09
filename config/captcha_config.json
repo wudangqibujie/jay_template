@@ -1,5 +1,5 @@
 {
-    "name": "CNN_Captcha",
+    "name": "CNN_Captcha2",
     "n_gpu": 1,
     "trainer": {
         "epochs": 100,

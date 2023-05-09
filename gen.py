@@ -11,7 +11,7 @@ ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
 
 ALL_CHAR_SET = NUMBER + ALPHABET
 ALL_CHAR_SET_LEN = len(ALL_CHAR_SET)
-MAX_CAPTCHA = 1
+MAX_CAPTCHA = 4
 
 # 图像大小
 IMAGE_HEIGHT = 60
@@ -40,8 +40,8 @@ def gen_captcha_text_and_image():
     return captcha_text, captcha_image
 
 if __name__ == '__main__':
-    count = 50000
-    path = TRAIN_DATASET_PATH    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
+    count = 10000
+    path = TEST_DATASET_PATH    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
     if not os.path.exists(path):
         os.makedirs(path)
     for i in range(count):
