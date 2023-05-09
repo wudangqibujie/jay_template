@@ -40,8 +40,8 @@ def gen_captcha_text_and_image():
     return captcha_text, captcha_image
 
 if __name__ == '__main__':
-    count = 10000
-    path = TEST_DATASET_PATH    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
+    count = 1000
+    path = TRAIN_DATASET_PATH    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
     if not os.path.exists(path):
         os.makedirs(path)
     for i in range(count):

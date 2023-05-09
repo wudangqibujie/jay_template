@@ -44,6 +44,7 @@ class CRNN(nn.Module):
             nn.ReLU(True)
         )  # 512x1x25
 
+        # [width, batch_size, channel] 25, batch_size, 512
         self.rnn = nn.Sequential(
             BiLSTM(512, nh, nh),
             BiLSTM(nh, nh, nh))
@@ -53,6 +54,7 @@ class CRNN(nn.Module):
         batch_size, channel, height, width = conved.size()
         assert height == 1, "the height of conv must be 1"
         conved = conved.squeeze(2)
-        conved = conved.permute(2, 0, 1)  # [width, batch_size, channel]
+        # [width, batch_size, channel] 25, batch_size, 512
+        conved = conved.permute(2, 0, 1)
         output = self.rnn(conved)
         return output

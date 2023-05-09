@@ -8,13 +8,20 @@
 #     writer.add_scalar('loss/loss2', epoch * 0.31, epoch)
 #     writer.add_scalar('loss/loss3', epoch * 0.14, epoch)
 
-import logging
-import logging.config as logging_config
-from utils import read_json
-config = read_json("logger/logger_config.json")
-logging_config.dictConfig(config)
+# import logging
+# import logging.config as logging_config
+# from utils import read_json
+# config = read_json("logger/logger_config.json")
+# logging_config.dictConfig(config)
+#
+# logger = logging.getLogger("train")
+# logger.setLevel(logging.INFO)
+# logger.info("test")
+# logger.info('    {:15s}: {}'.format(str("BMW"), 0.12))
 
-logger = logging.getLogger("train")
-logger.setLevel(logging.INFO)
-logger.info("test")
-logger.info('    {:15s}: {}'.format(str("BMW"), 0.12))
+
+with open('./config/ocr_config/char_std_5990.txt', encoding="utf-8") as f:
+    data = f.readlines()
+    alphabet = [x.rstrip() for x in data]
+    alphabet = ''.join(alphabet)
+print(alphabet)
