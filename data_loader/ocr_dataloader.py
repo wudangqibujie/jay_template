@@ -10,7 +10,7 @@ import numpy as np
 class TextLineDataset(Dataset):
     def __init__(self, text_line_file=None, transform=None, target_transform=None):
         self.text_line_file = text_line_file
-        with open(text_line_file) as fp:
+        with open(text_line_file, encoding="utf-8") as fp:
             self.lines = fp.readlines()
             self.nSamples = len(self.lines)
 

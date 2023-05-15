@@ -6,7 +6,7 @@ from utils import prepare_device
 import torch
 import os
 from utils.util import read_json
-from model.loss import multiclass_hinge_loss, multiclass_cross_entropy
+from model.loss import multiclass_cross_entropy
 from model.metric import multiclass_accuracy, multiclass_ele_accuracy
 from torch.optim.lr_scheduler import StepLR
 from trainer.jay_trainer import Trainer

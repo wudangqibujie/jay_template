@@ -25,3 +25,4 @@ with open('./config/ocr_config/char_std_5990.txt', encoding="utf-8") as f:
     alphabet = [x.rstrip() for x in data]
     alphabet = ''.join(alphabet)
 print(alphabet)
+

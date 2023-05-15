@@ -1,25 +1,19 @@
 import torch.nn as nn
 
 
-class BiLSTM(nn.Module):
-    def __init__(self, in_dim, hidden_dim, out_dim):
-        super(BiLSTM, self).__init__()
-        # input (seq_len, batch, input_dim)
-        # h_0 (num_layers * num_directions, batch, hidden_size)
-        # c_0 (num_layers * num_directions, batch, hidden_size)
+class BidirectionalLSTM(nn.Module):
 
-        # output (seq_len, batch, hidden_size * num_directions)
-        # h_n (num_layers * num_directions, batch, hidden_size)
-        # c_n (num_layers * num_directions, batch, hidden_size)
+    def __init__(self, input_size, hidden_size, output_size):
+        super(BidirectionalLSTM, self).__init__()
 
-        # input_dim, hidden_size, num_layers
-        self.lstm = nn.LSTM(in_dim, hidden_dim, bidirectional=True)
-        self.embedding = nn.Linear(hidden_dim * 2, out_dim)
+        self.rnn = nn.LSTM(input_size, hidden_size, bidirectional=True)
+        self.embedding = nn.Linear(hidden_size * 2, output_size)
 
-    def forward(self, x):
-        recu, _ = self.lstm(x)
-        steps, batch_size, hidden_dim = recu.size()
-        step_recu = recu.view(steps * batch_size, hidden_dim)
-        out = self.embedding(step_recu) # [steps * batch_size, out_dim]
-        out = out.view(steps, batch_size, -1)
-        return out
+    def forward(self, input):
+        recurrent, _ = self.rnn(input)
+        T, b, h = recurrent.size()
+        t_rec = recurrent.view(T * b, h)
+
+        output = self.embedding(t_rec)  # [T * b, output_size]
+        output = output.view(T, b, -1)
+        return output
