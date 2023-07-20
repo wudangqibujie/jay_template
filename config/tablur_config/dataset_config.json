@@ -1,0 +1,84 @@
+{
+    "control_columns": [
+        "time_stamp",
+        "userid"
+    ],
+    "label_columns": [
+        {
+            "name": "clk",
+            "type": "binary"
+        }
+    ],
+    "dense_features": [
+        {
+            "name": "price"
+        }
+    ],
+    "sparse_features": [
+        {
+            "name": "adgroup_id",
+            "type": "category",
+            "vocab_size": 94
+        },
+        {
+            "name": "pid",
+            "type": "category",
+            "vocab_size": 2
+        },
+        {
+            "name": "cate_id",
+            "type": "category",
+            "vocab_size": 47
+        },
+        {
+            "name": "campaign_id",
+            "type": "category",
+            "vocab_size": 97
+        },
+        {
+            "name": "customer",
+            "type": "category",
+            "vocab_size": 96
+        },
+        {
+            "name": "brand",
+            "type": "category",
+            "vocab_size": 65
+        },
+        {
+            "name": "cms_segid",
+            "type": "category",
+            "vocab_size": 9
+        },
+        {
+            "name": "cms_group_id",
+            "type": "category",
+            "vocab_size": 9
+        },
+        {
+            "name": "final_gender_code",
+            "type": "category",
+            "vocab_size": 2
+        },
+        {
+            "name": "age_level",
+            "type": "category",
+            "vocab_size": 5
+        },
+        {
+            "name": "pvalue_level",
+            "type": "category",
+            "vocab_size": 2
+        },
+        {
+            "name": "shopping_level",
+            "type": "category",
+            "vocab_size": 3
+        },
+        {
+            "name": "occupation",
+            "type": "category",
+            "vocab_size": 2
+        }
+    ]
+}
