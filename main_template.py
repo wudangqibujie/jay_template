@@ -1,5 +1,5 @@
 from config.captcha_task_config import CaptchaConfig
-from data_loader.captcha_dataloader import CaptchaDataset
+from dataset.captcha_dataloader import CaptchaDataset
 from torch.utils.data import DataLoader
 from model.captcha_model import CNN
 from utils import prepare_device

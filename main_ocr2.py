@@ -1,4 +1,4 @@
-from data_loader.ocr_dataloader import ResizeNormalize, AlignCollate, TextLineDataset, RandomSequentialSampler
+from dataset.ocr_dataloader import ResizeNormalize, AlignCollate, TextLineDataset, RandomSequentialSampler
 from torch.utils.data import DataLoader
 from dataclasses import dataclass
 import torch.nn as nn

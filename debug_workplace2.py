@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader
-from data_loader.captcha_dataloader import Captcha2Data
+from dataset.captcha_dataloader import Captcha2Data
 from torchvision.transforms import Compose, ToTensor
 from model.cnn_model.captcha_model import CaptchaModel
 from model.metric import captcha_acc

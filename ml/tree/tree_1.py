@@ -1,5 +1,5 @@
 import numpy as np
-
+from ml.data_process import calculate_variance, divide_on_feature, calculate_entropy
 
 
 class DecisionNode():
@@ -152,6 +152,7 @@ class DecisionTree(object):
                 branch = tree.true_branch
         elif feature_value == tree.threshold:
             branch = tree.true_branch
+        return self.predict_value(x, branch)
 
     def predict(self, X):
         """ Classify samples one by one and return the set of labels """
@@ -245,6 +246,7 @@ class RegressionTree(DecisionTree):
         self._impurity_calculation = self._calculate_variance_reduction
         self._leaf_value_calculation = self._mean_of_y
         super(RegressionTree, self).fit(X, y)
+
 
 class ClassificationTree(DecisionTree):
     def _calculate_information_gain(self, y, y1, y2):

@@ -1,8 +1,8 @@
 from config.captcha_task_config import CaptchaConfig
 from config.captcha_task_config2 import BaseConfig
-from data_loader.captcha_dataloader import CaptchaDataset
+from dataset.captcha_dataloader import CaptchaDataset
 from torch.utils.data import DataLoader
-from data_loader.captcha_dataloader import Captcha2Data
+from dataset.captcha_dataloader import Captcha2Data
 from utils import prepare_device
 from torchvision.transforms import Compose, ToTensor
 import torch
