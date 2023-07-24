@@ -1,0 +1,56 @@
+{
+    "dense": [
+        {
+            "name": "scale_age"
+        }
+    ],
+    "sparse": [
+        {
+            "name": "lbe_user_id",
+            "vocab_size": 193,
+            "embed_dim": 8
+        },
+        {
+            "name": "lbe_movie_id",
+            "vocab_size": 187,
+            "embed_dim": 8
+        },
+        {
+            "name": "lbe_gender",
+            "vocab_size": 2,
+            "embed_dim": 8
+        },
+        {
+            "name": "lbe_occupation",
+            "vocab_size": 20,
+            "embed_dim": 8
+        },
+        {
+            "name": "lbe_zip",
+            "vocab_size": 188,
+            "embed_dim": 8
+        }
+    ],
+    "varlen": [
+        {
+            "name": "varlen_genres",
+            "cols": [
+                "varlen_genres_0",
+                "varlen_genres_1",
+                "varlen_genres_2",
+                "varlen_genres_3",
+                "varlen_genres_4"
+            ],
+            "type": "sparse",
+            "max_length": 5,
+            "vocab_size": 18,
+            "embed_dim": 8
+        }
+    ],
+    "target": [
+        {
+            "name": "if_high_rated",
+            "task_type": "binary_classification"
+        }
+    ]
+}

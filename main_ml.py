@@ -14,10 +14,10 @@ from sklearn.metrics import roc_auc_score
 # y = data.target[data.target != 0]
 # y[y == 1] = 0
 # y[y == 2] = 1
-#
+
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, seed=1)
 # import pandas as pd
-#
+
 # df = pd.DataFrame()
 # df['label'] = y_test
 # clf = LogisticRegression(gradient_descent=True, learning_rate=0.01, C=0.1)
@@ -116,3 +116,5 @@ from sklearn.metrics import roc_auc_score
 #                 title="Gradient Boosting",
 #                 accuracy=accuracy,
 #                 legend_labels=data.target_names)
+
+
