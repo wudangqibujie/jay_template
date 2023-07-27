@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../jay_project/RecBole/.idea/RecBole.iml" filepath="$PROJECT_DIR$/../jay_project/RecBole/.idea/RecBole.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/jay_project.iml" filepath="$PROJECT_DIR$/.idea/jay_project.iml" />
     </modules>
   </component>

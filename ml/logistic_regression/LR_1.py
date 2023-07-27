@@ -1,8 +1,10 @@
+import numpy
 import numpy as np
 import math
+from dataclasses import dataclass
 
 
-class Sigmoid():
+class Sigmoid:
     def __call__(self, x):
         return 1 / (1 + np.exp(-x))
 
@@ -17,8 +19,15 @@ def make_diagonal(x):
         m[i, i] = x[i]
     return m
 
+@dataclass
+class LogInfo:
+    epoch: int
+    param: numpy.array
+    gradients: numpy.array
+    loss: float
 
-class LogisticRegression():
+
+class LogisticRegression:
     """ Logistic Regression classifier.
     Parameters:
     -----------
@@ -35,6 +44,7 @@ class LogisticRegression():
         self.gradient_descent = gradient_descent
         self.sigmoid = Sigmoid()
         self.C = C
+        self.loginfos = []
 
     def _initialize_parameters(self, X):
         n_features = np.shape(X)[1]
@@ -51,8 +61,10 @@ class LogisticRegression():
             if self.gradient_descent:
                 # Move against the gradient of the loss function with
                 # respect to the parameters to minimize the loss
-                self.param -= (self.learning_rate * -(y - y_pred).dot(X) + self.C * self.param)
-
+                gradients = (y - y_pred).dot(X)
+                self.param -= (self.learning_rate * - gradients + self.C * self.param)
+                loginfo = LogInfo(epoch=i, param=self.param, gradients=gradients, loss=0.)
+                self.loginfos.append(loginfo)
             else:
                 # Make a diagonal matrix of the sigmoid gradient column vector
                 diag_gradient = make_diagonal(self.sigmoid.gradient(X.dot(self.param)))
@@ -64,6 +76,6 @@ class LogisticRegression():
         y_pred = self.predcit_prob(X).astype(int)
         return y_pred
 
-    def predcit_prob(self, X, bit=5):
+    def predcit_prob(self, X):
         score = self.sigmoid(X.dot(self.param))
         return score

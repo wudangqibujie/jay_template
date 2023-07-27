@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2c70985-3537-47d2-9236-b970fb0e9d72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/main_ali.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_ali_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jay_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jay_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_ali_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_ali_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/logistic_regression/LR_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/logistic_regression/LR_1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +28,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2POpXXTbQ8VPmsoJncouddiWUTv" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -35,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jay_project/RecBole" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.main_ali_run">
