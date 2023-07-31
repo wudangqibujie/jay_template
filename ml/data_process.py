@@ -28,6 +28,8 @@ def calculate_entropy(y):
         p = count / len(y)
         entropy += -p * log2(p)
     return entropy
+
+
 def to_categorical(x, n_col=None):
     """ One-hot encoding of nominal values """
     if not n_col:

@@ -2,7 +2,7 @@ import numpy as np
 from ml.data_process import calculate_variance, divide_on_feature, calculate_entropy
 
 
-class DecisionNode():
+class DecisionNode:
     """Class that represents a decision node or leaf in the decision tree
 
     Parameters:
@@ -19,8 +19,12 @@ class DecisionNode():
     false_branch: DecisionNode
         Next decision node for samples where features value did not meet the threshold.
     """
-    def __init__(self, feature_i=None, threshold=None,
-                 value=None, true_branch=None, false_branch=None):
+    def __init__(self,
+                 feature_i=None,
+                 threshold=None,
+                 value=None,
+                 true_branch=None,
+                 false_branch=None):
         self.feature_i = feature_i          # Index for the feature that is tested
         self.threshold = threshold          # Threshold value for feature
         self.value = value                  # Value if the node is a leaf in the tree
@@ -43,8 +47,11 @@ class DecisionTree(object):
     loss: function
         Loss function that is used for Gradient Boosting models to calculate impurity.
     """
-    def __init__(self, min_samples_split=2, min_impurity=1e-7,
-                 max_depth=float("inf"), loss=None):
+    def __init__(self,
+                 min_samples_split=2,
+                 min_impurity=1e-7,
+                 max_depth=float("inf"),
+                 loss=None):
         self.root = None  # Root node in dec. tree
         # Minimum n of samples to justify split
         self.min_samples_split = min_samples_split
