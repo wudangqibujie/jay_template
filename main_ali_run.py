@@ -4,8 +4,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-train_num = valid_num = 1000 * 20
-n_features = 10
+train_num = valid_num = 5000
+n_features = 5
 df_valid = next(pd.read_csv(Path(r"../data/ali_dataset") / "es_item_test_bucket_1.csv", chunksize=train_num))
 df_valid['49'] = df_valid['49'].apply(lambda x: 1 if x >= 1 else 0)
 X_valid, y_valid = df_valid[[str(i) for i in range(2, n_features)]].values, df_valid["49"].values
@@ -90,7 +90,7 @@ import numpy as np
 
 from ml.tree.tree_1 import ClassificationTree, RegressionTree
 from sklearn.metrics import roc_auc_score
-tree = RegressionTree(min_samples_split=5)
+tree = RegressionTree(min_samples_split=50)
 tree.fit(X_train, y_train)
 pred_y = tree.predict(X_valid)
 print(roc_auc_score(y_valid, pred_y))
