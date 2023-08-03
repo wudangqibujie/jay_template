@@ -1,5 +1,6 @@
 import pandas as pd
 from pathlib import Path
+from sklearn.ensemble import GradientBoostingClassifier
 
 csv_files = [
     "fr_item_train",
